@@ -1,0 +1,7 @@
+/* core/static/core/css/udemy-clone.css */
+/* Spacing and alignments to mimic Udemy layout proportions */
+body { font-feature-settings: "kern"; }
+.badge.border { border: 1px solid var(--deepblue-500); }
+.card-title { font-weight: 600; }
+.navbar .form-control { border-radius: 999px; }
+section { scroll-margin-top: 80px; }

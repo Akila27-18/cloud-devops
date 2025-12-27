@@ -1,0 +1,16 @@
+<!-- accounts/templates/accounts/profile.html -->
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container py-5">
+  <h2 class="fw-bold">Profile</h2>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ user.username }}</h5>
+      <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+      <p class="card-text"><strong>Joined:</strong> {{ user.date_joined|date:"F j, Y" }}</p>
+      <a href="{% url 'accounts:settings' %}" class="btn btn-outline-primary">Edit Settings</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

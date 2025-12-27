@@ -1,0 +1,60 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold text-primary" href="{% url 'core:home' %}">
+      <img src="{% static 'core/img/logo.jpg' %}" alt="Cloud DevOps" height="30" class="me-2">
+      Cloud DevOps
+    </a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Nav Content -->
+    <div id="mainNav" class="collapse navbar-collapse">
+      <!-- Search -->
+      <form class="d-flex ms-lg-4 flex-grow-1" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search for anything">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+      </form>
+
+      <!-- Links -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="{% url 'courses:catalog' %}">Explore</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Business</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Teach</a></li>
+
+        {% if user.is_authenticated %}
+          <!-- Dropdown for logged-in users -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              {{ user.username }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+              {% if user.is_instructor %}
+                <li><a class="dropdown-item" href="{% url 'instructors:dashboard' %}">Instructor Dashboard</a></li>
+              {% else %}
+                <li><a class="dropdown-item" href="{% url 'courses:my_courses' %}">My Courses</a></li>
+              {% endif %}
+              <li><a class="dropdown-item" href="{% url 'accounts:profile' %}">Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'accounts:settings' %}">Settings</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="{% url 'accounts:logout' %}">Log out</a></li>
+            </ul>
+          </li>
+        {% else %}
+          <!-- Show before login -->
+          <li class="nav-item">
+            <a class="btn btn-primary ms-2" href="{% url 'accounts:login' %}">Log in</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-primary ms-2" href="{% url 'accounts:signup' %}">Sign up</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

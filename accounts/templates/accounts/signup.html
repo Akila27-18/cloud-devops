@@ -1,0 +1,25 @@
+<!-- accounts/templates/accounts/signup.html -->
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<section class="py-5">
+  <div class="container" style="max-width: 420px;">
+    <h3 class="fw-bold mb-3">Create your account</h3>
+    <form>
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input class="form-control" type="text" placeholder="Your name">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input class="form-control" type="email" placeholder="you@example.com">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input class="form-control" type="password">
+      </div>
+      <button class="btn btn-primary w-100">Sign up</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

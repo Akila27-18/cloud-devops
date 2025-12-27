@@ -1,0 +1,42 @@
+{% load static %}
+
+<!-- core/templates/core/partials/footer.html -->
+<footer class="py-5 bg-white border-top">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-3">
+        <h6 class="fw-bold">Popular Skills</h6>
+        <ul class="list-unstyled small">
+          <li><a href="#">ChatGPT</a></li>
+          <li><a href="#">Python</a></li>
+          <li><a href="#">Web Development</a></li>
+          <li><a href="#">Blender</a></li>
+          <li><a href="#">Graphic Design</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6 class="fw-bold">Certifications</h6>
+        <ul class="list-unstyled small">
+          <li><a href="#">AWS</a></li>
+          <li><a href="#">PMI</a></li>
+          <li><a href="#">CompTIA</a></li>
+          <li><a href="#">Azure</a></li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <div class="p-3 bg-light rounded">
+          <h6 class="fw-bold mb-2">Case Study: Booz Allen Hamilton</h6>
+          <p class="small text-muted mb-1">93% of learners more engaged; 65% saw productivity increase.</p>
+          <a href="#" class="btn btn-outline-primary btn-sm">Read full story</a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-4 d-flex justify-content-between align-items-center">
+      <span class="small text-muted">&copy; {{ now|default:2025 }} Cloud DevOps</span>
+      <div class="d-flex gap-3 opacity-75">
+        <img src="{% static 'core/img/logos/boozallen.jpg' %}" height="24" alt="Booz Allen">
+        <img src="{% static 'core/img/logos/aws.jpg' %}" height="24" alt="AWS">
+      </div>
+    </div>
+  </div>
+</footer>

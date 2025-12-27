@@ -1,0 +1,76 @@
+[
+  {
+    "model": "courses.course",
+    "pk": 1,
+    "fields": {
+      "title": "The Complete Course 2023: Complete AI Engineer Bootcamp",
+      "slug": "complete-ai-engineer-bootcamp",
+      "description": "Learn AI engineering end-to-end.",
+      "price": 399,
+      "rating": 4.6,
+      "rating_count": 1063,
+      "category": "Generative AI",
+      "thumbnail_url": "https://picsum.photos/seed/ai1/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 2,
+    "fields": {
+      "title": "Prompt Engineering for AI",
+      "slug": "prompt-engineering-ai",
+      "description": "Master prompts and workflow patterns.",
+      "price": 399,
+      "rating": 4.6,
+      "rating_count": 1063,
+      "category": "Generative AI",
+      "thumbnail_url": "https://picsum.photos/seed/ai2/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 3,
+    "fields": {
+      "title": "AI Agents & LangChain",
+      "slug": "ai-agents-langchain",
+      "description": "Build practical agents with LangChain.",
+      "price": 399,
+      "rating": 4.6,
+      "rating_count": 1063,
+      "category": "Generative AI",
+      "thumbnail_url": "https://picsum.photos/seed/ai3/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 4,
+    "fields": {
+      "title": "Ultimate AWS Certified Solutions Architect Associate 2023",
+      "slug": "aws-saa-ultimate-2023",
+      "description": "Prep for AWS SAA with hands-on labs.",
+      "price": 3499,
+      "rating": 4.7,
+      "rating_count": 2045,
+      "category": "IT Certifications",
+      "thumbnail_url": "https://picsum.photos/seed/aws/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 5,
+    "fields": {
+      "title": "DevOps Bootcamp: CI/CD, Docker & Kubernetes",
+      "slug": "devops-bootcamp",
+      "description": "Learn DevOps end-to-end with pipelines, containers, and orchestration.",
+      "price": 2999,
+      "rating": 4.5,
+      "rating_count": 1587,
+      "category": "DevOps",
+      "thumbnail_url": "https://picsum.photos/seed/devops/600/400"
+    }
+  }
+]
+
+
+
+

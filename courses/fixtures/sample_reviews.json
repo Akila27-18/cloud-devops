@@ -1,0 +1,22 @@
+[
+  {
+    "model": "courses.review",
+    "pk": 1,
+    "fields": {
+      "user": 2,
+      "course": 1,
+      "rating": 5,
+      "comment": "Excellent course, very clear explanations!"
+    }
+  },
+  {
+    "model": "courses.review",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "course": 2,
+      "rating": 4,
+      "comment": "Good content, but could use more examples."
+    }
+  }
+]

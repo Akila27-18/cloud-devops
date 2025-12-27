@@ -1,0 +1,46 @@
+[
+  {
+    "model": "courses.lesson",
+    "pk": 1,
+    "fields": {
+      "course": 1,
+      "title": "Introduction to AI Engineering",
+      "content": "Overview of AI workflows and tools.",
+      "video_url": "https://www.youtube.com/embed/abcd1234",
+      "order": 1
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 2,
+    "fields": {
+      "course": 1,
+      "title": "Neural Networks Basics",
+      "content": "Understanding layers, activation functions, and training.",
+      "video_url": "https://www.youtube.com/embed/efgh5678",
+      "order": 2
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 3,
+    "fields": {
+      "course": 2,
+      "title": "Prompt Engineering Fundamentals",
+      "content": "Learn how to craft effective prompts.",
+      "video_url": "https://www.youtube.com/embed/prompt101",
+      "order": 1
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 4,
+    "fields": {
+      "course": 5,
+      "title": "Docker Basics",
+      "content": "Containerization concepts and Docker CLI.",
+      "video_url": "https://www.youtube.com/embed/docker101",
+      "order": 1
+    }
+  }
+]

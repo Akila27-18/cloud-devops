@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <h3 class="fw-bold">Instructor Dashboard</h3>
+    <table class="table table-striped mt-3">
+      <thead>
+        <tr>
+          <th>Course</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Students</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for course in courses %}
+          <tr>
+            <td>{{ course.title }}</td>
+            <td>{{ course.category }}</td>
+            <td>₹{{ course.price }}</td>
+            <td>{{ course.enrollments.count }}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="4" class="text-muted">No courses yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,187 @@
+<!-- core/templates/core/home.html -->
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Gift banner -->
+<section class="py-4 bg-amber-50 border-bottom">
+  <div class="container text-center">
+    <p class="mb-1 fw-semibold">Need a last-minute gift?</p>
+    <p class="text-muted mb-2">Send a course via email. It’s fast, easy & a lasting gift to show you care.</p>
+    <a class="btn btn-amber" href="#">Treat them now</a>
+  </div>
+</section>
+
+<!-- Career & life skills -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6">
+        <h2 class="fw-bold">Learn essential career and life skills</h2>
+        <p class="text-muted">Explore courses to power your career or strengthen your personal brand.</p>
+        <div class="d-flex gap-3 flex-wrap">
+          <span class="badge bg-primary-subtle text-primary border">Generative AI</span>
+          <span class="badge bg-primary-subtle text-primary border">IT Certifications</span>
+          <span class="badge bg-primary-subtle text-primary border">Data Science</span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <img class="img-fluid rounded" src="{% static 'core/img/static-placeholder.jpg' %}" width="300" alt="Skills">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Personal Plan banner -->
+<section class="py-5 bg-deepblue text-white">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-8">
+        <h3 class="fw-bold">Reimagine your career in the AI era</h3>
+        <p>Future-proof your skills with the Personal Plan. Get access to top-rated courses in tech, business, and more.</p>
+        <a class="btn btn-outline-light me-3" href="#">Learn more</a>
+        <span class="opacity-75">Starting at ₹850/month</span>
+      </div>
+      <div class="col-lg-4 text-center">
+        <img class="img-fluid rounded" src="{% static 'core/img/hero/banner.jpg' %}" alt="Personal Plan">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills to transform -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <h3 class="fw-bold mb-3">Skills to transform your career and life</h3>
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+      {% for course in ai_courses %}
+        {% include 'courses/course_card.html' with course=course %}
+      {% empty %}
+        <p class="text-muted">No courses yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Certifications -->
+<section class="py-5 bg-white border-top">
+  <div class="container">
+    <h3 class="fw-bold mb-3">Get certified and get ahead in your career</h3>
+    <p class="text-muted">Prep for certification exams with courses taught by experts.</p>
+    <div class="d-flex gap-4 align-items-center flex-wrap">
+      <img src="{% static 'core/img/logos/comptia.jpg' %}" height="32" alt="CompTIA">
+      <img src="{% static 'core/img/logos/aws.jpg' %}" height="32" alt="AWS">
+      <img src="{% static 'core/img/logos/pmi.jpg' %}" height="32" alt="PMI">
+    </div>
+  </div>
+</section>
+
+<!-- Career paths -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h3 class="fw-bold mb-4">Ready to reimagine your career?</h3>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Full Stack Web Developer</h5>
+            <p class="card-text text-muted">Learn modern web stacks and build production apps.</p>
+            <a href="{% url 'courses:catalog' %}?path=fswd" class="btn btn-primary">Explore</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Digital Marketer</h5>
+            <p class="card-text text-muted">Master SEO, content, and paid media.</p>
+            <a href="{% url 'courses:catalog' %}?path=dm" class="btn btn-primary">Explore</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Data Scientist</h5>
+            <p class="card-text text-muted">Statistics, ML, and data storytelling.</p>
+            <a href="{% url 'courses:catalog' %}?path=ds" class="btn btn-primary">Explore</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trending -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <h3 class="fw-bold mb-4">Trending courses</h3>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+      {% for course in trending %}
+        {% include 'courses/course_card.html' with course=course %}
+      {% empty %}
+        <p class="text-muted">No trending courses yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Business plans -->
+<section class="py-5 bg-light border-top">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <h3 class="fw-bold">Grow your team's skills and your business</h3>
+        <p class="text-muted">Choose from plans tailored for teams and enterprises.</p>
+      </div>
+    </div>
+
+    <div class="row g-4 mt-2">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-primary">
+          <div class="card-body">
+            <h5 class="card-title">Team Plan</h5>
+            <p class="mb-2">₹2,000 per user/year</p>
+            <ul class="small text-muted">
+              <li>11,000+ courses</li>
+              <li>Analytics & insights</li>
+              <li>Mobile access</li>
+            </ul>
+            <a href="#" class="btn btn-primary">Get started</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-dark">
+          <div class="card-body">
+            <h5 class="card-title">Enterprise Plan</h5>
+            <p class="mb-2">Custom pricing</p>
+            <ul class="small text-muted">
+              <li>All Team features</li>
+              <li>Custom content</li>
+              <li>Dedicated CSM</li>
+            </ul>
+            <a href="#" class="btn btn-dark">Contact sales</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-warning">
+          <div class="card-body">
+            <h5 class="card-title">AI Fluency</h5>
+            <p class="mb-2">Contact sales</p>
+            <ul class="small text-muted">
+              <li>AI Fluency collection</li>
+              <li>Enterprise collection</li>
+              <li>Growth collection</li>
+            </ul>
+            <a href="#" class="btn btn-amber">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

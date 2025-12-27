@@ -1,0 +1,18 @@
+/* core/static/core/css/theme.css */
+/* Color system: deep blue + amber, neutrals tuned to Bootstrap */
+:root {
+  --deepblue-700: #0b3d91;
+  --deepblue-600: #1154b5;
+  --deepblue-500: #1e6bd9;
+  --amber-500: #ffb300;
+  --amber-600: #ff9900;
+}
+
+.bg-deepblue { background-color: var(--deepblue-600) !important; }
+.text-deepblue { color: var(--deepblue-600) !important; }
+.btn-amber {
+  background-color: var(--amber-600);
+  color: #0d0d0d;
+  border: none;
+}
+.bg-amber-50 { background-color: #fff7e6; }

@@ -1,0 +1,15 @@
+{% extends "core/base.html" %}
+{% block content %}
+<div class="container py-5">
+  <h2 class="fw-bold">Checkout for {{ course.title }}</h2>
+  <p>Price: ₹{{ course.price }}</p>
+
+  <!-- Stripe Payment Button -->
+  <form action="" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary w-100">
+      Enter Card Details
+    </button>
+  </form>
+</div>
+{% endblock %}

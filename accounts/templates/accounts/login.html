@@ -1,0 +1,22 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<section class="py-5">
+  <div class="container" style="max-width: 420px;">
+    <h3 class="fw-bold mb-3">Log in</h3>
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <button type="submit" class="btn btn-primary w-100">Continue</button>
+    </form>
+
+    {% if form.errors %}
+      <div class="alert alert-danger mt-3">
+        {{ form.errors }}
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

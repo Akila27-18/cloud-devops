@@ -1,0 +1,22 @@
+[
+  {
+    "model": "accounts.customuser",
+    "pk": 1,
+    "fields": {
+      "username": "instructor1",
+      "email": "instructor1@example.com",
+      "password": "pbkdf2_sha256$260000$abc123$hashedpasswordhere",
+      "is_instructor": true
+    }
+  },
+  {
+    "model": "accounts.customuser",
+    "pk": 2,
+    "fields": {
+      "username": "student1",
+      "email": "student1@example.com",
+      "password": "pbkdf2_sha256$260000$xyz456$hashedpasswordhere",
+      "is_instructor": false
+    }
+  }
+]
