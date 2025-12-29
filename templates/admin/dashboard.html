@@ -1,0 +1,43 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+  <h1>📊 Vetri Academy Dashboard</h1>
+
+  <ul>
+    <li>Total Users: {{ total_users }}</li>
+    <li>Total Instructors: {{ total_instructors }}</li>
+    <li>Total Courses: {{ total_courses }}</li>
+    <li>Total Enrollments: {{ total_enrollments }}</li>
+  </ul>
+
+  <h2>🔥 Top Courses</h2>
+  <table class="table">
+    <tr><th>Course</th><th>Instructor</th></tr>
+    {% for course in top_courses %}
+      <tr>
+        <td>{{ course.title }}</td>
+        <td>{{ course.instructor }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <h2>📈 Enrollment Trends</h2>
+  <canvas id="enrollmentChart"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('enrollmentChart').getContext('2d');
+    const enrollmentChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [{% for e in enrollment_trends %}'{{ e.month }}',{% endfor %}],
+        datasets: [{
+          label: 'Enrollments',
+          data: [{% for e in enrollment_trends %}{{ e.count }},{% endfor %}],
+          borderColor: 'rgba(75, 192, 192, 1)',
+          fill: false,
+          tension: 0.1
+        }]
+      }
+    });
+  </script>
+{% endblock %}

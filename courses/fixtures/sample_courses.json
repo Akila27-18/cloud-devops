@@ -69,8 +69,220 @@
       "thumbnail_url": "https://picsum.photos/seed/devops/600/400"
     }
   }
-]
+  ,
+  {
+    "model": "courses.course",
+    "pk": 6,
+    "fields": {
+      "title": "Python for Data Science and Machine Learning",
+      "slug": "python-data-science-ml",
+      "description": "Learn Python, pandas, scikit-learn, and ML basics.",
+      "price": 2499,
+      "rating": 4.7,
+      "rating_count": 3200,
+      "category": "Data Science",
+      "thumbnail_url": "https://picsum.photos/seed/ds1/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 7,
+    "fields": {
+      "title": "React & Redux Frontend Bootcamp",
+      "slug": "react-redux-bootcamp",
+      "description": "Build modern SPAs with React, Redux, and hooks.",
+      "price": 1999,
+      "rating": 4.5,
+      "rating_count": 2100,
+      "category": "Web Development",
+      "thumbnail_url": "https://picsum.photos/seed/react1/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 8,
+    "fields": {
+      "title": "Node.js & Express API Development",
+      "slug": "node-express-api",
+      "description": "Learn backend development with Node.js and Express.",
+      "price": 1799,
+      "rating": 4.6,
+      "rating_count": 1850,
+      "category": "Web Development",
+      "thumbnail_url": "https://picsum.photos/seed/node1/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 9,
+    "fields": {
+      "title": "Full Stack Django & React",
+      "slug": "django-react-fullstack",
+      "description": "Combine Django backend with React frontend.",
+      "price": 2999,
+      "rating": 4.8,
+      "rating_count": 2500,
+      "category": "Web Development",
+      "thumbnail_url": "https://picsum.photos/seed/django1/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 10,
+    "fields": {
+      "title": "SQL & Database Design Masterclass",
+      "slug": "sql-database-masterclass",
+      "description": "Learn relational databases, queries, and normalization.",
+      "price": 1499,
+      "rating": 4.4,
+      "rating_count": 1200,
+      "category": "Data Science",
+      "thumbnail_url": "https://picsum.photos/seed/sql1/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 11,
+    "fields": {
+      "title": "Certified Ethical Hacker (CEH) Prep",
+      "slug": "ceh-prep",
+      "description": "Prepare for CEH exam with hands-on labs.",
+      "price": 3999,
+      "rating": 4.6,
+      "rating_count": 900,
+      "category": "Cybersecurity",
+      "thumbnail_url": "https://picsum.photos/seed/ceh1/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 12,
+    "fields": {
+      "title": "Digital Marketing Mastery",
+      "slug": "digital-marketing-mastery",
+      "description": "SEO, SEM, content marketing, and analytics.",
+      "price": 1999,
+      "rating": 4.5,
+      "rating_count": 1500,
+      "category": "Business",
+      "thumbnail_url": "https://picsum.photos/seed/dm1/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 13,
+    "fields": {
+      "title": "UI/UX Design with Figma",
+      "slug": "uiux-figma",
+      "description": "Learn user interface and experience design.",
+      "price": 1299,
+      "rating": 4.3,
+      "rating_count": 800,
+      "category": "Design",
+      "thumbnail_url": "https://picsum.photos/seed/figma1/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 14,
+    "fields": {
+      "title": "Cloud Computing with Azure",
+      "slug": "azure-cloud-computing",
+      "description": "Learn Azure fundamentals and cloud deployment.",
+      "price": 3499,
+      "rating": 4.6,
+      "rating_count": 1100,
+      "category": "IT Certifications",
+      "thumbnail_url": "https://picsum.photos/seed/azure1/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 15,
+    "fields": {
+      "title": "Google Cloud Professional Architect Prep",
+      "slug": "gcp-architect-prep",
+      "description": "Prepare for GCP Professional Architect exam.",
+      "price": 3599,
+      "rating": 4.7,
+      "rating_count": 950,
+      "category": "IT Certifications",
+      "thumbnail_url": "https://picsum.photos/seed/gcp1/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 16,
+    "fields": {
+      "title": "Kubernetes for Developers",
+      "slug": "kubernetes-developers",
+      "description": "Learn container orchestration with Kubernetes.",
+      "price": 2799,
+      "rating": 4.5,
+      "rating_count": 1300,
+      "category": "DevOps",
+      "thumbnail_url": "https://picsum.photos/seed/k8s1/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 17,
+    "fields": {
+      "title": "Machine Learning with TensorFlow",
+      "slug": "ml-tensorflow",
+      "description": "Build and deploy ML models using TensorFlow.",
+      "price": 3199,
+      "rating": 4.6,
+      "rating_count": 1400,
+      "category": "Data Science",
+      "thumbnail_url": "https://picsum.photos/seed/tf1/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 18,
+    "fields": {
+      "title": "Deep Learning with PyTorch",
+      "slug": "dl-pytorch",
+      "description": "Master deep learning concepts using PyTorch.",
+      "price": 3499,
+      "rating": 4.7,
+      "rating_count": 1300,
+      "category": "Data Science",
+      "thumbnail_url": "https://picsum.photos/seed/pytorch1/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 19,
+    "fields": {
+      "title": "Advanced React and Redux",
+      "slug": "advanced-react-redux",
+      "description": "Dive deeper into React hooks, context, and advanced Redux patterns.",
+      "price": 2199,
+      "rating": 4.6,
+      "rating_count": 1600,
+      "category": "Web Development",
+      "thumbnail_url": "https://picsum.photos/seed/react2/600/400"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 20,
+    "fields": {
+      "title": "Building RESTful APIs with Django REST Framework",
+      "slug": "restful-apis-django-rest",
+      "description": "Learn to build robust RESTful APIs using Django REST Framework.",
+      "price": 2499,
+      "rating": 4.5,
+      "rating_count": 1400,
+      "category": "Web Development",
+      "thumbnail_url": "https://picsum.photos/seed/django2/600/400"
+    }
+  }
 
+
+]
 
 
 

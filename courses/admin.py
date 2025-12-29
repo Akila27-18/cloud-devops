@@ -23,25 +23,20 @@ class CourseAdmin(admin.ModelAdmin):
     list_display = ("title", "category", "price", "rating", "rating_count", "instructor", "created_at")
     list_filter = ("category", "instructor")
     search_fields = ("title", "category", "description")
-    prepopulated_fields = {"slug": ("title",)}  # auto-generate slug from title
-    inlines = [LessonInline, ReviewInline]      # show lessons & reviews inline
+    prepopulated_fields = {"slug": ("title",)}
+    inlines = [LessonInline, ReviewInline]
 
+    # ✅ Custom bulk actions
+    actions = ["mark_as_featured", "set_price_free"]
 
-@admin.register(Lesson)
-class LessonAdmin(admin.ModelAdmin):
-    list_display = ("title", "course", "order")
-    list_filter = ("course",)
-    ordering = ("course", "order")
+    def mark_as_featured(self, request, queryset):
+        updated = queryset.update(rating=5.0)  # example: boost rating to highlight
+        self.message_user(request, f"{updated} course(s) marked as featured.")
 
+    mark_as_featured.short_description = "Mark selected courses as Featured"
 
-@admin.register(Enrollment)
-class EnrollmentAdmin(admin.ModelAdmin):
-    list_display = ("user", "course", "progress", "enrolled_at")
-    list_filter = ("course", "user")
-    search_fields = ("user__username", "course__title")
+    def set_price_free(self, request, queryset):
+        updated = queryset.update(price=0)
+        self.message_user(request, f"{updated} course(s) set to FREE.")
 
-
-@admin.register(LessonCompletion)
-class LessonCompletionAdmin(admin.ModelAdmin):
-    list_display = ("enrollment", "lesson", "completed_at")
-    list_filter = ("lesson", "enrollment")
+    set_price_free.short_description = "Set selected courses to Free"

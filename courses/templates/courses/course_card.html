@@ -1,18 +1,39 @@
-<!-- courses/templates/courses/course_card.html -->
+{% load static %}
+{% load custom_filters %}  <!-- Load your custom filter here -->
+
 <div class="col">
   <div class="card h-100 shadow-sm">
+    <!-- Course Thumbnail -->
     {% if course.thumbnail_url %}
-      <img src="{{ course.thumbnail_url }}" class="card-img-top" alt="{{ course.title }}">
+      <img src="{{ course.thumbnail_url }}" class="card-img-top" alt="Thumbnail of {{ course.title }}">
+    {% else %}
+      <img src="{% static 'core/img/default-course-thumbnail.jpg' %}" class="card-img-top" alt="Default thumbnail for {{ course.title }}">
     {% endif %}
+    
     <div class="card-body">
+      <!-- Course Title -->
       <h6 class="card-title">{{ course.title }}</h6>
-      <div class="small text-muted">{{ course.category }}</div>
+
+      <!-- Course Category -->
       <div class="mt-2">
-        <span class="fw-semibold">{{ course.rating }}</span>
-        <span class="text-muted small">({{ course.rating_count }})</span>
+        <span class="badge bg-primary text-white">{{ course.category }}</span>
       </div>
-      <div class="mt-2 fw-bold">₹{{ course.price }}</div>
-      <a href="{% url 'courses:detail' course.slug %}" class="stretched-link"></a>
+
+      <!-- Course Rating -->
+      <div class="mt-2">
+        <span class="fw-semibold text-warning">
+          {% for i in course.rating|range_filter %}
+            ⭐
+          {% endfor %}
+        </span>
+        <span class="text-muted small">({{ course.rating_count }} reviews)</span>
+      </div>
+
+      <!-- Course Price -->
+      <div class="mt-2 fw-bold">₹{{ course.price|floatformat:2 }}</div>
+      
+      <!-- Link to Course Detail -->
+      <a href="{% url 'courses:detail' course.slug %}" class="stretched-link" aria-label="View details of {{ course.title }}"></a>
     </div>
   </div>
 </div>

@@ -42,5 +42,181 @@
       "video_url": "https://www.youtube.com/embed/docker101",
       "order": 1
     }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 5,
+    "fields": {
+      "course": 5,
+      "title": "Kubernetes Fundamentals",
+      "content": "Pods, deployments, and services explained.",
+      "video_url": "https://www.youtube.com/embed/kube101",
+      "order": 2
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 6,
+    "fields": {
+      "course": 6,
+      "title": "Python Basics",
+      "content": "Variables, loops, and functions.",
+      "video_url": "https://www.youtube.com/embed/python101",
+      "order": 1
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 7,
+    "fields": {
+      "course": 6,
+      "title": "Data Analysis with Pandas",
+      "content": "Working with DataFrames and Series.",
+      "video_url": "https://www.youtube.com/embed/pandas101",
+      "order": 2
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 8,
+    "fields": {
+      "course": 7,
+      "title": "React Components",
+      "content": "Functional and class components.",
+      "video_url": "https://www.youtube.com/embed/react101",
+      "order": 1
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 9,
+    "fields": {
+      "course": 7,
+      "title": "State Management with Redux",
+      "content": "Actions, reducers, and store.",
+      "video_url": "https://www.youtube.com/embed/redux101",
+      "order": 2
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 10,
+    "fields": {
+      "course": 9,
+      "title": "Django Models",
+      "content": "Defining models and migrations.",
+      "video_url": "https://www.youtube.com/embed/django101",
+      "order": 1
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 11,
+    "fields": {
+      "course": 9,
+      "title": "React Integration",
+      "content": "Connecting Django APIs with React frontend.",
+      "video_url": "https://www.youtube.com/embed/django-react101",
+      "order": 2
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 12,
+    "fields": {
+      "course": 10,
+      "title": "SQL Basics",
+      "content": "SELECT, INSERT, UPDATE, DELETE.",
+      "video_url": "https://www.youtube.com/embed/sql101",
+      "order": 1
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 13,
+    "fields": {
+      "course": 10,
+      "title": "Database Design",
+      "content": "Normalization and relationships.",
+      "video_url": "https://www.youtube.com/embed/sql-design",
+      "order": 2
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 14,
+    "fields": {
+      "course": 11,
+      "title": "Ethical Hacking Basics",
+      "content": "Reconnaissance and scanning.",
+      "video_url": "https://www.youtube.com/embed/ceh101",
+      "order": 1
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 15,
+    "fields": {
+      "course": 11,
+      "title": "Exploitation Techniques",
+      "content": "Common vulnerabilities and exploits.",
+      "video_url": "https://www.youtube.com/embed/ceh102",
+      "order": 2
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 16,
+    "fields": {
+      "course": 12,
+      "title": "SEO Fundamentals",
+      "content": "On-page and off-page SEO.",
+      "video_url": "https://www.youtube.com/embed/seo101",
+      "order": 1
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 17,
+    "fields": {
+      "course": 12,
+      "title": "Content Marketing",
+      "content": "Creating engaging content.",
+      "video_url": "https://www.youtube.com/embed/content101",
+      "order": 2
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 18,
+    "fields": {
+      "course": 13,
+      "title": "Figma Basics",
+      "content": "Frames, components, and prototyping.",
+      "video_url": "https://www.youtube.com/embed/figma101",
+      "order": 1
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 19,
+    "fields": {
+      "course": 13,
+      "title": "UX Principles",
+      "content": "User research and usability testing.",
+      "video_url": "https://www.youtube.com/embed/ux101",
+      "order": 2
+    }
+  },
+  {
+    "model": "courses.lesson",
+    "pk": 20,
+    "fields": {
+      "course": 14,
+      "title": "Azure Fundamentals",
+      "content": "Resource groups, VMs, and storage.",
+      "video_url": "https://www.youtube.com/embed/azure101",
+      "order": 1
+    }
   }
 ]

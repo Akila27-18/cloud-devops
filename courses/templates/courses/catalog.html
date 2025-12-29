@@ -1,4 +1,3 @@
-<!-- courses/templates/courses/catalog.html -->
 {% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
@@ -7,6 +6,7 @@
   <div class="container">
     <h3 class="fw-bold mb-4">Explore courses</h3>
 
+    <!-- Search and Filter Form -->
     <form method="get" class="row g-3 mb-4">
       <div class="col-md-4">
         <input type="text" name="q" class="form-control" placeholder="Search courses..." value="{{ request.GET.q }}">
@@ -14,25 +14,26 @@
       <div class="col-md-3">
         <select name="category" class="form-select">
           <option value="">All categories</option>
-          <option {% if request.GET.category == 'Generative AI' %}selected{% endif %}>Generative AI</option>
-          <option {% if request.GET.category == 'IT Certifications' %}selected{% endif %}>IT Certifications</option>
-          <option {% if request.GET.category == 'Data Science' %}selected{% endif %}>Data Science</option>
-          <option {% if request.GET.category == 'DevOps' %}selected{% endif %}>DevOps</option>
-          <option {% if request.GET.category == 'Web Development' %}selected{% endif %}>Web Development</option>
+          <option value="Generative AI" {% if request.GET.category == 'Generative AI' %}selected{% endif %}>Generative AI</option>
+          <option value="IT Certifications" {% if request.GET.category == 'IT Certifications' %}selected{% endif %}>IT Certifications</option>
+          <option value="Data Science" {% if request.GET.category == 'Data Science' %}selected{% endif %}>Data Science</option>
+          <option value="DevOps" {% if request.GET.category == 'DevOps' %}selected{% endif %}>DevOps</option>
+          <option value="Web Development" {% if request.GET.category == 'Web Development' %}selected{% endif %}>Web Development</option>
         </select>
       </div>
       <div class="col-md-2">
-        <input type="number" name="min_price" class="form-control" placeholder="Min ₹" value="{{ request.GET.min_price }}">
+        <input type="number" name="min_price" class="form-control" placeholder="Min ₹" value="{{ request.GET.min_price }}" min="0">
       </div>
       <div class="col-md-2">
-        <input type="number" name="max_price" class="form-control" placeholder="Max ₹" value="{{ request.GET.max_price }}">
+        <input type="number" name="max_price" class="form-control" placeholder="Max ₹" value="{{ request.GET.max_price }}" min="0">
       </div>
       <div class="col-md-1">
-        <button class="btn btn-primary w-100">Filter</button>
+        <button class="btn btn-primary w-100 rounded-pill py-2">Filter</button>
       </div>
     </form>
 
-    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+    <!-- Course Listings -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
       {% for course in courses %}
         {% include 'courses/course_card.html' with course=course %}
       {% empty %}

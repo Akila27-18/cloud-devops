@@ -1,7 +1,169 @@
 /* core/static/core/css/udemy-clone.css */
-/* Spacing and alignments to mimic Udemy layout proportions */
-body { font-feature-settings: "kern"; }
-.badge.border { border: 1px solid var(--deepblue-500); }
-.card-title { font-weight: 600; }
-.navbar .form-control { border-radius: 999px; }
-section { scroll-margin-top: 80px; }
+
+/* Global typography and spacing */
+body { 
+  font-feature-settings: "kern"; 
+  font-family: 'Arial', sans-serif; 
+  line-height: 1.6; 
+  letter-spacing: 0.5px; 
+}
+
+/* Badge styling with border */
+.badge.border { 
+  border: 1px solid var(--deepblue-500); 
+  border-radius: 12px; /* Added for rounded badges */
+  padding: 5px 12px;
+  font-size: 14px; /* Adjust font size for badges */
+}
+
+/* Card title styling */
+.card-title { 
+  font-weight: 600; 
+  font-size: 1.25rem; /* Increased font size for emphasis */
+  color: var(--deepblue-600);
+}
+
+/* Navbar search input */
+.navbar .form-control { 
+  border-radius: 999px; 
+  padding: 10px 20px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.navbar .form-control:focus {
+  border-color: var(--deepblue-500);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Section scroll margin for smooth navigation */
+section { 
+  scroll-margin-top: 80px; 
+}
+
+/* Hover effects on cards */
+.card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: all 0.3s ease;
+}
+
+.card-body {
+  transition: padding 0.3s ease;
+}
+
+.card:hover .card-body {
+  padding: 1.5rem; /* Add more padding on hover for emphasis */
+}
+
+/* Responsive grid layout for course cards */
+.course-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Section titles for better hierarchy */
+h1, h2, h3, h4, h5 {
+  font-weight: 700;
+  color: var(--deepblue-600);
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+/* Subtle border and shadow for cards */
+.card {
+  border: 1px solid #e6e6e6; /* Light border */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+/* Card image style */
+.card-img-top {
+  height: 200px; /* Fixed height for consistency */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Button hover state */
+.btn-amber {
+  background-color: var(--amber-600);
+  color: #0d0d0d;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-amber:hover {
+  background-color: var(--amber-500);
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Card footer */
+.card-footer {
+  text-align: center;
+  background-color: #f8f9fa;
+  padding: 0.75rem;
+  border-top: 1px solid #e6e6e6;
+}
+
+/* Utility classes for background and text colors */
+.bg-deepblue { background-color: var(--deepblue-600) !important; }
+.bg-amber-50 { background-color: #fff7e6 !important; } /* Light Amber */
+.bg-amber-100 { background-color: var(--amber-500) !important; }
+/* Text colors */
+.text-deepblue { color: var(--deepblue-600) !important; }
+.text-amber { color: var(--amber-500) !important; }
+.text-muted { color: var(--neutral-dark) !important; }
+/* Button styles */
+.btn-amber {
+    background-color: var(--amber-600);
+    color: #0d0d0d;
+    border: none;
+    transition: all 0.3s ease;
+    }
+.btn-amber:hover {
+    background-color: var(--amber-500);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.btn-outline-amber {
+    color: var(--amber-600);
+    border: 2px solid var(--amber-600);
+    }
+.btn-outline-amber:hover {
+    background-color: var(--amber-600);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Utility classes */
+.text-primary { color: var(--deepblue-600) !important; }
+.bg-primary { background-color: var(--deepblue-600) !important; }
+/* Custom border color for elements */
+.border-deepblue { border-color: var(--deepblue-600) !important; }
+.border-amber { border-color: var(--amber-600) !important; }
+.card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.card-body {
+  padding: 20px;
+}
+.card-title {
+  color: var(--deepblue-600);
+}
+

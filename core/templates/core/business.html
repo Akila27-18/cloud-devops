@@ -1,0 +1,132 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container my-5">
+  <h1 class="mb-4 text-center text-primary">Business Overview</h1>
+  <p class="text-center text-muted">Welcome to Vetri Academy’s Business Page. This section provides insights into our mission, operations, growth strategy, and more.</p>
+
+  <!-- Mission -->
+  <section class="my-5">
+    <div class="card shadow-sm p-4">
+      <h2 class="card-title text-primary">🌟 Mission</h2>
+      <p class="card-text">Our mission is to empower learners and instructors by delivering a scalable, intuitive LMS platform that supports multi-instructor courses, rich instructor profiles, and advanced dashboards.</p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="my-5">
+    <div class="card shadow-sm p-4">
+      <h2 class="card-title text-primary">🛠 Services</h2>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Course Hosting:</strong> Seamless publishing and management of online courses.</li>
+        <li class="list-group-item"><strong>Instructor Tools:</strong> Dashboards, analytics, and profile management.</li>
+        <li class="list-group-item"><strong>Student Experience:</strong> Easy enrollment, progress tracking, and lesson completion.</li>
+        <li class="list-group-item"><strong>Admin Control:</strong> Powerful backend with inlines, bulk actions, and custom dashboards.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Growth Strategy -->
+  <section class="my-5">
+    <div class="card shadow-sm p-4">
+      <h2 class="card-title text-primary">📈 Growth Strategy</h2>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Expand course offerings across diverse categories.</li>
+        <li class="list-group-item">Enhance analytics with enrollment trends and top course insights.</li>
+        <li class="list-group-item">Introduce business partnerships for corporate training.</li>
+        <li class="list-group-item">Scale infrastructure to support global learners.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Key Metrics -->
+  <section class="my-5">
+    <div class="card shadow-sm p-4">
+      <h2 class="card-title text-primary">📊 Key Metrics</h2>
+      <table class="table table-bordered table-striped">
+        <tr><th>Total Users</th><td>{{ total_users }}</td></tr>
+        <tr><th>Total Instructors</th><td>{{ total_instructors }}</td></tr>
+        <tr><th>Total Courses</th><td>{{ total_courses }}</td></tr>
+        <tr><th>Total Enrollments</th><td>{{ total_enrollments }}</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="my-5">
+    <h2 class="text-primary">💬 Testimonials</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card shadow-sm p-3">
+          <blockquote class="blockquote">
+            <p>“Vetri Academy transformed the way I teach online. The instructor tools are intuitive and powerful.”</p>
+            <footer class="blockquote-footer">Jane Doe, Instructor</footer>
+          </blockquote>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card shadow-sm p-3">
+          <blockquote class="blockquote">
+            <p>“As a student, I love the seamless experience and progress tracking features.”</p>
+            <footer class="blockquote-footer">John Smith, Student</footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Information -->
+  <section class="my-5">
+    <div class="card shadow-sm p-4">
+      <h2 class="card-title text-primary">📞 Contact Information</h2>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Email: <a href="mailto:support@vetriacademy.com">support@vetriacademy.com</a></li>
+        <li class="list-group-item">Phone: +1 (555) 123-4567</li>
+        <li class="list-group-item">Address: 123 Learning Lane, Education City, ED 45678</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Social Media -->
+  <section class="my-5">
+    <div class="card shadow-sm p-4">
+      <h2 class="card-title text-primary">📱 Social Media</h2>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><a href="https://twitter.com/VetriAcademy" target="_blank" rel="noopener">Twitter: @VetriAcademy</a></li>
+        <li class="list-group-item"><a href="https://linkedin.com/company/vetriacademy" target="_blank" rel="noopener">LinkedIn: Vetri Academy</a></li>
+        <li class="list-group-item"><a href="https://facebook.com/vetriacademy" target="_blank" rel="noopener">Facebook: Vetri Academy</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="my-5">
+    <div class="card shadow-sm p-4">
+      <h2 class="card-title text-primary">❓ FAQ</h2>
+      <dl>
+        <dt>How do I become an instructor?</dt>
+        <dd>Sign up on our platform and complete the instructor onboarding process.</dd>
+
+        <dt>What payment methods are accepted?</dt>
+        <dd>We accept major credit cards, PayPal, and other secure payment options.</dd>
+
+        <dt>Is there a mobile app?</dt>
+        <dd>Yes, our platform is accessible via mobile browsers and dedicated apps coming soon.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- Future Vision -->
+  <section class="my-5">
+    <div class="card shadow-sm p-4">
+      <h2 class="card-title text-primary">🚀 Future Vision</h2>
+      <p>We aim to become a leading LMS platform by combining robust technology with user-centric design, enabling instructors and learners worldwide to thrive.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <hr>
+  <p class="text-center text-muted">Thank you for choosing Vetri Academy. We are committed to your <a href="https://success.ty" target="_blank" rel="noopener" class="text-primary">success</a> and safety.</p>
+</div>
+
+{% endblock %}

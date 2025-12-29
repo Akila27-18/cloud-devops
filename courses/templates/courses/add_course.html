@@ -1,10 +1,83 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block content %}
 <div class="container mt-4">
   <h2>Add New Course</h2>
-  <form method="post">
+
+  <!-- Success/Failure Message -->
+  {% if messages %}
+    <div class="alert alert-info">
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <!-- Course Form -->
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+    
+    <div class="form-group mb-3">
+      {{ form.name.label }}
+      {{ form.name|add_class:"form-control" }}
+      {% if form.name.errors %}
+        <div class="text-danger">
+          {% for error in form.name.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group mb-3">
+      {{ form.category.label }}
+      {{ form.category|add_class:"form-control" }}
+      {% if form.category.errors %}
+        <div class="text-danger">
+          {% for error in form.category.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group mb-3">
+      {{ form.description.label }}
+      {{ form.description|add_class:"form-control" }}
+      {% if form.description.errors %}
+        <div class="text-danger">
+          {% for error in form.description.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group mb-3">
+      {{ form.price.label }}
+      {{ form.price|add_class:"form-control" }}
+      {% if form.price.errors %}
+        <div class="text-danger">
+          {% for error in form.price.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group mb-3">
+      {{ form.thumbnail.label }}
+      {{ form.thumbnail|add_class:"form-control" }}
+      {% if form.thumbnail.errors %}
+        <div class="text-danger">
+          {% for error in form.thumbnail.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
     <button type="submit" class="btn btn-primary">Create Course</button>
   </form>
 </div>

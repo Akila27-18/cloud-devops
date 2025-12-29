@@ -1,4 +1,5 @@
 /* core/static/core/css/theme.css */
+
 /* Color system: deep blue + amber, neutrals tuned to Bootstrap */
 :root {
   --deepblue-700: #0b3d91;
@@ -6,13 +7,68 @@
   --deepblue-500: #1e6bd9;
   --amber-500: #ffb300;
   --amber-600: #ff9900;
+  --neutral-light: #f7f7f7;
+  --neutral-dark: #333;
 }
 
+/* Background colors */
 .bg-deepblue { background-color: var(--deepblue-600) !important; }
+.bg-amber-50 { background-color: #fff7e6 !important; } /* Light Amber */
+.bg-amber-100 { background-color: var(--amber-500) !important; }
+
+/* Text colors */
 .text-deepblue { color: var(--deepblue-600) !important; }
+.text-amber { color: var(--amber-500) !important; }
+.text-muted { color: var(--neutral-dark) !important; }
+
+/* Button styles */
 .btn-amber {
   background-color: var(--amber-600);
   color: #0d0d0d;
   border: none;
+  transition: all 0.3s ease;
 }
-.bg-amber-50 { background-color: #fff7e6; }
+
+.btn-amber:hover {
+  background-color: var(--amber-500);
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline-amber {
+  color: var(--amber-600);
+  border: 2px solid var(--amber-600);
+}
+
+.btn-outline-amber:hover {
+  background-color: var(--amber-600);
+  color: white;
+}
+
+/* Utility classes */
+.text-primary { color: var(--deepblue-600) !important; }
+.bg-primary { background-color: var(--deepblue-600) !important; }
+
+/* Custom border color for elements */
+.border-deepblue { border-color: var(--deepblue-600) !important; }
+.border-amber { border-color: var(--amber-600) !important; }
+
+.card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  color: var(--deepblue-600);
+}
+
+/* Hero Image Styling */
+.hero-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+

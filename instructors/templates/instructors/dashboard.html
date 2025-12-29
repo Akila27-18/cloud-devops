@@ -1,31 +1,37 @@
 {% extends 'core/base.html' %}
-{% load static %}
 {% block content %}
-<section class="py-5">
-  <div class="container">
-    <h3 class="fw-bold">Instructor Dashboard</h3>
-    <table class="table table-striped mt-3">
-      <thead>
-        <tr>
-          <th>Course</th>
-          <th>Category</th>
-          <th>Price</th>
-          <th>Students</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for course in courses %}
-          <tr>
-            <td>{{ course.title }}</td>
-            <td>{{ course.category }}</td>
-            <td>₹{{ course.price }}</td>
-            <td>{{ course.enrollments.count }}</td>
-          </tr>
-        {% empty %}
-          <tr><td colspan="4" class="text-muted">No courses yet.</td></tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-</section>
+<div class="container py-5">
+  <h2>Instructor Dashboard</h2>
+  <a href="{% url 'instructors:add_course' %}" class="btn btn-primary mb-3">Add New Course</a>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Course</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Students</th>
+        <th>Lessons</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for course in courses %}
+      <tr>
+        <td>{{ course.title }}</td>
+        <td>{{ course.category }}</td>
+        <td>₹{{ course.price }}</td>
+        <td>{{ course.enrollments.count }}</td>
+        <td>{{ course.lessons.count }}</td>
+        <td>
+          <a href="{% url 'instructors:add_lesson' course.slug %}" class="btn btn-sm btn-primary mb-1">Add Lesson</a>
+          <a href="{% url 'instructors:manage_lessons' course.slug %}" class="btn btn-sm btn-secondary mb-1">Manage Lessons</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="6" class="text-muted">No courses yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}

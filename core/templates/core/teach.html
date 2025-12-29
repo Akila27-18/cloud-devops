@@ -1,0 +1,73 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4 text-center text-primary">👩‍🏫 Teach on Vetri Academy</h1>
+
+  <!-- Intro -->
+  <section class="mb-5 text-center">
+    <p class="lead text-muted">
+      Share your knowledge with the world! Vetri Academy gives you the tools to create, publish,
+      and manage courses with ease. Whether you’re an expert instructor or just starting out,
+      our platform supports you every step of the way.
+    </p>
+  </section>
+
+  <!-- Why Teach -->
+  <section class="mb-5">
+    <h2 class="text-center text-primary">🌟 Why Teach Here?</h2>
+    <ul class="list-group list-group-flush text-center">
+      <li class="list-group-item">🌍 Reach a global audience of eager learners.</li>
+      <li class="list-group-item">🎓 Flexible course creation with video, quizzes, and assignments.</li>
+      <li class="list-group-item">📊 Powerful instructor dashboard with analytics and insights.</li>
+      <li class="list-group-item">💸 Earn revenue from your expertise.</li>
+    </ul>
+  </section>
+
+  <!-- How It Works -->
+  <section class="mb-5">
+    <h2 class="text-center text-primary">🛠 How It Works</h2>
+    <ol class="text-center">
+      <li><strong>Sign Up:</strong> Create your instructor profile.</li>
+      <li><strong>Build Courses:</strong> Upload lessons, videos, and resources.</li>
+      <li><strong>Publish:</strong> Launch your course to students worldwide.</li>
+      <li><strong>Engage:</strong> Track progress, answer questions, and grow your community.</li>
+    </ol>
+  </section>
+
+  <!-- Top Instructors -->
+  <section class="mb-5">
+    <h2 class="text-center text-primary">🏆 Top Instructors</h2>
+    <div class="row">
+      {% for instructor in top_instructors %}
+        <div class="col-md-4 mb-3">
+          <div class="card shadow-sm border-light h-100">
+            <img src="{{ instructor.profile_picture.url }}" alt="{{ instructor.username }}'s picture" class="card-img-top" style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title text-primary">{{ instructor.username }}</h5>
+              <p class="card-text text-muted">{{ instructor.bio|default:"No bio available." }}</p>
+              <p><strong>Courses:</strong> {{ instructor.course_count }}</p>
+            </div>
+            <div class="card-footer text-center">
+              <a href="{% url 'instructor_profile' instructor.username %}" class="btn btn-outline-primary btn-sm">View Profile</a>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="col-12">
+          <p class="text-center">No instructors found yet. Be the first to join!</p>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="mb-5 text-center">
+    <h2 class="text-primary">🚀 Ready to Start?</h2>
+    <p class="lead">
+      Join our community of instructors today and inspire learners everywhere.
+    </p>
+    <a href="{% url 'accounts:signup' %}" class="btn btn-primary btn-lg">Become an Instructor</a>
+  </section>
+</div>
+{% endblock %}

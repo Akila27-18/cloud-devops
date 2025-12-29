@@ -4,39 +4,59 @@
 <footer class="py-5 bg-white border-top">
   <div class="container">
     <div class="row g-4">
+      <!-- Popular Skills Section -->
       <div class="col-md-3">
         <h6 class="fw-bold">Popular Skills</h6>
         <ul class="list-unstyled small">
-          <li><a href="#">ChatGPT</a></li>
-          <li><a href="#">Python</a></li>
-          <li><a href="#">Web Development</a></li>
-          <li><a href="#">Blender</a></li>
-          <li><a href="#">Graphic Design</a></li>
+          <li><a href="#" class="text-dark text-decoration-none hover-link">ChatGPT</a></li>
+          <li><a href="#" class="text-dark text-decoration-none hover-link">Python</a></li>
+          <li><a href="#" class="text-dark text-decoration-none hover-link">Web Development</a></li>
+          <li><a href="#" class="text-dark text-decoration-none hover-link">Blender</a></li>
+          <li><a href="#" class="text-dark text-decoration-none hover-link">Graphic Design</a></li>
         </ul>
       </div>
+
+      <!-- Certifications Section -->
       <div class="col-md-3">
         <h6 class="fw-bold">Certifications</h6>
         <ul class="list-unstyled small">
-          <li><a href="#">AWS</a></li>
-          <li><a href="#">PMI</a></li>
-          <li><a href="#">CompTIA</a></li>
-          <li><a href="#">Azure</a></li>
+          <li><a href="#" class="text-dark text-decoration-none hover-link">AWS</a></li>
+          <li><a href="#" class="text-dark text-decoration-none hover-link">PMI</a></li>
+          <li><a href="#" class="text-dark text-decoration-none hover-link">CompTIA</a></li>
+          <li><a href="#" class="text-dark text-decoration-none hover-link">Azure</a></li>
         </ul>
       </div>
+
+      <!-- Case Study Section -->
       <div class="col-md-6">
-        <div class="p-3 bg-light rounded">
+        <div class="p-3 bg-light rounded shadow-sm">
           <h6 class="fw-bold mb-2">Case Study: Booz Allen Hamilton</h6>
           <p class="small text-muted mb-1">93% of learners more engaged; 65% saw productivity increase.</p>
           <a href="#" class="btn btn-outline-primary btn-sm">Read full story</a>
         </div>
       </div>
     </div>
+
+    <!-- Footer Bottom Section -->
     <div class="mt-4 d-flex justify-content-between align-items-center">
       <span class="small text-muted">&copy; {{ now|default:2025 }} Cloud DevOps</span>
+
+      <!-- Brand Logos -->
       <div class="d-flex gap-3 opacity-75">
-        <img src="{% static 'core/img/logos/boozallen.jpg' %}" height="24" alt="Booz Allen">
-        <img src="{% static 'core/img/logos/aws.jpg' %}" height="24" alt="AWS">
+        <img src="{% static 'core/img/logos/boozallen.jpg' %}" height="24" alt="Booz Allen" class="footer-logo">
+        <img src="{% static 'core/img/logos/aws.jpg' %}" height="24" alt="AWS" class="footer-logo">
       </div>
+    </div>
+
+    <!-- Social Media Icons Section (optional) -->
+    <div class="mt-4 text-center">
+      <a href="#" class="text-muted me-3"><i class="bi bi-facebook"></i></a>
+      <a href="#" class="text-muted me-3"><i class="bi bi-twitter"></i></a>
+      <a href="#" class="text-muted me-3"><i class="bi bi-linkedin"></i></a>
+      <a href="#" class="text-muted"><i class="bi bi-instagram"></i></a>
     </div>
   </div>
 </footer>
+
+<!-- Bootstrap Icons CDN for social media icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">

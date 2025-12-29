@@ -1,8 +1,8 @@
-# courses/views.py
-
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.core.paginator import Paginator
 from .models import Course, Lesson, Enrollment, LessonCompletion
 from .forms import CourseForm
 
@@ -26,6 +26,7 @@ def add_course(request):
             course = form.save(commit=False)
             course.instructor = request.user   # assign logged-in instructor
             course.save()
+            messages.success(request, "Your course has been added successfully!")
             return redirect("instructors:dashboard")  # or course detail page
     else:
         form = CourseForm()
@@ -58,6 +59,7 @@ def detail(request, slug):
 
 @login_required
 def my_courses(request):
+    # Retrieve all enrollments for the current user
     enrollments = Enrollment.objects.filter(user=request.user).select_related("course")
     return render(request, "courses/my_courses.html", {"enrollments": enrollments})
 
@@ -66,7 +68,11 @@ def my_courses(request):
 def complete_lesson(request, lesson_id):
     lesson = get_object_or_404(Lesson, id=lesson_id)
     enrollment = get_object_or_404(Enrollment, user=request.user, course=lesson.course)
+
+    # Create or fetch the LessonCompletion record for this user and lesson
     LessonCompletion.objects.get_or_create(enrollment=enrollment, lesson=lesson)
+
+    messages.success(request, f"Lesson '{lesson.title}' marked as completed!")
     return redirect("courses:detail", slug=lesson.course.slug)
 
 
@@ -88,11 +94,23 @@ def catalog(request):
     if max_price:
         qs = qs.filter(price__lte=max_price)
 
-    return render(request, "courses/catalog.html", {"courses": qs})
+    # Pagination logic
+    paginator = Paginator(qs, 12)  # Show 12 courses per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, "courses/catalog.html", {"courses": page_obj})
 
 
 @login_required
 def enroll(request, slug):
     course = get_object_or_404(Course, slug=slug)
     enrollment, created = Enrollment.objects.get_or_create(user=request.user, course=course)
+    
+    # Provide user feedback
+    if created:
+        messages.success(request, f"Successfully enrolled in {course.title}!")
+    else:
+        messages.info(request, f"You are already enrolled in {course.title}.")
+    
     return redirect("courses:detail", slug=course.slug)
