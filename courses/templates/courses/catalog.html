@@ -1,46 +1,110 @@
 {% extends 'core/base.html' %}
 {% load static %}
-{% block content %}
 
+{% block content %}
 <section class="py-5">
   <div class="container">
-    <h3 class="fw-bold mb-4">Explore courses</h3>
 
-    <!-- Search and Filter Form -->
-    <form method="get" class="row g-3 mb-4">
+    <h3 class="fw-bold mb-4">Explore Courses</h3>
+
+    <!-- ================= FILTER FORM ================= -->
+    <form method="get" class="row g-3 mb-4 align-items-end">
+
       <div class="col-md-4">
-        <input type="text" name="q" class="form-control" placeholder="Search courses..." value="{{ request.GET.q }}">
+        <label class="form-label small">Search</label>
+        <input
+          type="text"
+          name="q"
+          class="form-control"
+          placeholder="Search courses..."
+          value="{{ request.GET.q }}">
       </div>
+
       <div class="col-md-3">
+        <label class="form-label small">Category</label>
         <select name="category" class="form-select">
           <option value="">All categories</option>
-          <option value="Generative AI" {% if request.GET.category == 'Generative AI' %}selected{% endif %}>Generative AI</option>
-          <option value="IT Certifications" {% if request.GET.category == 'IT Certifications' %}selected{% endif %}>IT Certifications</option>
-          <option value="Data Science" {% if request.GET.category == 'Data Science' %}selected{% endif %}>Data Science</option>
-          <option value="DevOps" {% if request.GET.category == 'DevOps' %}selected{% endif %}>DevOps</option>
-          <option value="Web Development" {% if request.GET.category == 'Web Development' %}selected{% endif %}>Web Development</option>
+          {% for cat in categories %}
+            <option value="{{ cat }}" {% if request.GET.category == cat %}selected{% endif %}>
+              {{ cat }}
+            </option>
+          {% endfor %}
         </select>
       </div>
+
       <div class="col-md-2">
-        <input type="number" name="min_price" class="form-control" placeholder="Min ₹" value="{{ request.GET.min_price }}" min="0">
+        <label class="form-label small">Min Price (₹)</label>
+        <input
+          type="number"
+          name="min_price"
+          class="form-control"
+          min="0"
+          value="{{ request.GET.min_price }}">
       </div>
+
       <div class="col-md-2">
-        <input type="number" name="max_price" class="form-control" placeholder="Max ₹" value="{{ request.GET.max_price }}" min="0">
+        <label class="form-label small">Max Price (₹)</label>
+        <input
+          type="number"
+          name="max_price"
+          class="form-control"
+          min="0"
+          value="{{ request.GET.max_price }}">
       </div>
-      <div class="col-md-1">
-        <button class="btn btn-primary w-100 rounded-pill py-2">Filter</button>
+
+      <div class="col-md-1 d-grid">
+        <button class="btn btn-primary rounded-pill py-2">Filter</button>
       </div>
     </form>
 
-    <!-- Course Listings -->
+    <!-- ================= COURSE GRID ================= -->
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
       {% for course in courses %}
         {% include 'courses/course_card.html' with course=course %}
       {% empty %}
-        <p class="text-muted">No courses found.</p>
+        <div class="col-12 text-center py-5">
+          <p class="text-muted fs-5">No courses match your filters.</p>
+          <a href="{% url 'courses:catalog' %}" class="btn btn-outline-primary">Clear Filters</a>
+        </div>
       {% endfor %}
     </div>
+
+    <!-- ================= PAGINATION ================= -->
+    {% if courses.paginator.num_pages > 1 %}
+    <nav class="mt-5">
+      <ul class="pagination justify-content-center">
+
+        {% if courses.has_previous %}
+          <li class="page-item">
+            <a class="page-link"
+               href="?page={{ courses.previous_page_number }}&{{ request.GET.urlencode|cut:'page=' }}">
+              Previous
+            </a>
+          </li>
+        {% endif %}
+
+        {% for page in courses.paginator.page_range %}
+          <li class="page-item {% if courses.number == page %}active{% endif %}">
+            <a class="page-link"
+               href="?page={{ page }}&{{ request.GET.urlencode|cut:'page=' }}">
+              {{ page }}
+            </a>
+          </li>
+        {% endfor %}
+
+        {% if courses.has_next %}
+          <li class="page-item">
+            <a class="page-link"
+               href="?page={{ courses.next_page_number }}&{{ request.GET.urlencode|cut:'page=' }}">
+              Next
+            </a>
+          </li>
+        {% endif %}
+
+      </ul>
+    </nav>
+    {% endif %}
+
   </div>
 </section>
-
 {% endblock %}

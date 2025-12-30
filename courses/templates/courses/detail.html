@@ -5,7 +5,8 @@
 <section class="py-5">
   <div class="container">
     <div class="row g-4">
-      <!-- Course Info -->
+
+      <!-- ================= COURSE INFO ================= -->
       <div class="col-lg-8">
         <div class="card p-4 mb-4">
           <h2 class="fw-bold">{{ course.title }}</h2>
@@ -13,37 +14,46 @@
           <p>{{ course.description }}</p>
         </div>
 
-        <!-- Progress Bar -->
+        <!-- ================= PROGRESS BAR ================= -->
         {% if enrollment %}
-        <div class="progress my-3">
-          <div class="progress-bar {% if enrollment.progress > 90 %}bg-success{% else %}bg-warning{% endif %}"
-               role="progressbar"
-               style="width: {{ enrollment.progress }}%;"
-               aria-valuenow="{{ enrollment.progress|floatformat:0 }}"
-               aria-valuemin="0" aria-valuemax="100">
-            {{ enrollment.progress|floatformat:0 }}% Complete
-          </div>
-        </div>
-
-        <!-- Next Lesson -->
-        {% if next_lesson %}
-          <div class="card mt-4">
-            <div class="card-body">
-              <h5 class="card-title">Next Lesson: {{ next_lesson.title }}</h5>
-              <a href="#collapse{{ next_lesson.id }}" class="btn btn-primary">Resume</a>
+          <div class="progress my-3">
+            <div class="progress-bar {% if enrollment.progress > 90 %}bg-success{% else %}bg-warning{% endif %}"
+                 role="progressbar"
+                 style="width: {{ enrollment.progress }}%;"
+                 aria-valuenow="{{ enrollment.progress|floatformat:0 }}"
+                 aria-valuemin="0" aria-valuemax="100">
+              {{ enrollment.progress|floatformat:0 }}% Complete
             </div>
           </div>
-        {% endif %}
+
+          {% if enrollment.certificate_issued %}
+            <div class="alert alert-success">
+              🎓 Certificate unlocked! Check <b>My Courses</b>.
+            </div>
+          {% endif %}
+
+          <!-- ================= NEXT LESSON ================= -->
+          {% if next_lesson %}
+            <div class="card mt-4">
+              <div class="card-body">
+                <h5 class="card-title">Next Lesson: {{ next_lesson.title }}</h5>
+                <a href="#collapse{{ next_lesson.id }}" class="btn btn-primary">Resume</a>
+              </div>
+            </div>
+          {% endif %}
         {% endif %}
 
-        <!-- Lessons Accordion -->
+        <!-- ================= LESSONS ================= -->
         <h4 class="fw-bold mt-4">Lessons</h4>
         <div class="accordion" id="lessonAccordion">
           {% for lesson in lessons %}
             <div class="accordion-item">
               <h2 class="accordion-header" id="heading{{ lesson.id }}">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ lesson.id }}">
-                  {{ lesson.title }} {% if lesson.completed %} <span class="badge bg-success">Completed</span> {% endif %}
+                <button class="accordion-button collapsed" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse{{ lesson.id }}">
+                  {{ lesson.title }}
+                  {% if lesson.completed %} <span class="badge bg-success ms-2">Completed</span> {% endif %}
                 </button>
               </h2>
               <div id="collapse{{ lesson.id }}" class="accordion-collapse collapse" data-bs-parent="#lessonAccordion">
@@ -51,9 +61,16 @@
                   <p>{{ lesson.content }}</p>
                   {% if lesson.video_url %}
                     <div class="ratio ratio-16x9">
-                      <iframe src="{{ lesson.embed_url }}" frameborder="0" allowfullscreen></iframe>
+                      <iframe id="player-{{ lesson.id }}" src="{{ lesson.embed_url }}?enablejsapi=1"
+                              frameborder="0" allowfullscreen></iframe>
                     </div>
                   {% endif %}
+
+                  <!-- AJAX completion endpoint -->
+                  <div class="lesson-complete-endpoint"
+                       data-lesson-id="{{ lesson.id }}"
+                       data-url="{% url 'courses:complete_lesson' lesson.id %}">
+                  </div>
                 </div>
               </div>
             </div>
@@ -62,61 +79,91 @@
           {% endfor %}
         </div>
 
-        <!-- Reviews -->
+        <!-- ================= REVIEWS ================= -->
         <h4 class="fw-bold mt-4">Latest Reviews</h4>
         {% for review in reviews|slice:":3" %}
           <div class="border rounded p-3 mb-2">
-            <div class="d-flex align-items-center">
-              <img src="{{ review.user.profile_picture.url }}" alt="{{ review.user.username }}" class="rounded-circle me-2" width="30">
-              <strong>{{ review.user.username }}</strong>
-              <span class="text-warning ms-2">★ {{ review.rating }}</span>
-            </div>
+            <strong>{{ review.user.username }}</strong>
+            <span class="text-warning ms-2">★ {{ review.rating }}</span>
             <p class="mb-0">{{ review.comment }}</p>
           </div>
         {% empty %}
           <p class="text-muted">No reviews yet.</p>
         {% endfor %}
-        {% if reviews|length > 3 %}
-          <a href="#allReviews" class="btn btn-link">See all reviews</a>
-        {% endif %}
 
-        <!-- All Reviews -->
-        <div id="allReviews" class="mt-4">
-          <h5 class="fw-bold">All Reviews</h5>
-          {% for review in reviews %}
-            <div class="border rounded p-3 mb-2">
-              <strong>{{ review.user.username }}</strong>
-              <span class="text-warning">★ {{ review.rating }}</span>
-              <p class="mb-0">{{ review.comment }}</p>
-            </div>
-          {% endfor %}
-        </div>
       </div>
 
-      <!-- Sidebar -->
+      <!-- ================= SIDEBAR ================= -->
       <div class="col-lg-4">
         {% if enrollment %}
-          <div class="d-flex gap-2 mt-4">
-            <a href="{% url 'courses:my_courses' %}" class="btn btn-success w-50">Go to My Courses</a>
+          <div class="d-flex gap-2 mt-4 flex-column">
+            <a href="{% url 'courses:my_courses' %}" class="btn btn-success w-100">Go to My Courses</a>
             {% if next_lesson %}
-              <a href="#collapse{{ next_lesson.id }}" class="btn btn-outline-primary w-50">Resume Course</a>
+              <a href="#collapse{{ next_lesson.id }}" class="btn btn-outline-primary w-100 mt-2">Resume Next Lesson</a>
             {% endif %}
           </div>
-          <div class="p-4 bg-light rounded mt-3">
+
+          <div class="p-4 bg-light rounded mt-3 text-center">
             <div class="fw-bold fs-4">₹{{ course.price }}</div>
             <p class="text-muted mb-0">You are already enrolled in this course.</p>
           </div>
+
         {% else %}
           <div class="d-flex gap-2 mt-4">
             <a href="{% url 'accounts:signup' %}" class="btn btn-primary w-50">Enroll Now</a>
-            <a href="{% url 'checkout:mock_checkout' course.slug %}" class="btn btn-outline-primary w-50">Buy Now</a>
+            <a href="{% url 'checkout:mock_checkout' course.slug %}" class="btn btn-warning w-50">
+                Buy Now
+            </a>
           </div>
-          <div class="p-4 bg-light rounded mt-3">
+
+          <div class="p-4 bg-light rounded mt-3 text-center">
             <div class="fw-bold fs-4">₹{{ course.price }}</div>
+            <p class="text-muted mb-0">Secure checkout available via Buy Now.</p>
           </div>
         {% endif %}
       </div>
+
     </div>
   </div>
 </section>
+
+<!-- ================= YOUTUBE AUTO-COMPLETE ================= -->
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+let players = {};
+function getCSRFToken() { return document.querySelector('[name=csrfmiddlewaretoken]').value; }
+function onYouTubeIframeAPIReady() {
+  {% for lesson in lessons %}
+    {% if lesson.video_url %}
+      players['{{ lesson.id }}'] = new YT.Player('player-{{ lesson.id }}', { events: { onStateChange: onPlayerStateChange } });
+    {% endif %}
+  {% endfor %}
+}
+function onPlayerStateChange(event) {
+  if (event.data === YT.PlayerState.ENDED) {
+    const lessonId = event.target.getIframe().id.split('-')[1];
+    completeLesson(lessonId);
+  }
+}
+function completeLesson(lessonId) {
+  const el = document.querySelector(`.lesson-complete-endpoint[data-lesson-id="${lessonId}"]`);
+  fetch(el.dataset.url, {
+    method: "POST",
+    headers: {
+      "X-CSRFToken": getCSRFToken(),
+      "X-Requested-With": "XMLHttpRequest"
+    }
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.completed) {
+      const bar = document.querySelector(".progress-bar");
+      bar.style.width = data.progress + "%";
+      bar.innerText = Math.round(data.progress) + "% Complete";
+
+      if (data.certificate) alert("🎓 Certificate unlocked!");
+    }
+  });
+}
+</script>
 {% endblock %}

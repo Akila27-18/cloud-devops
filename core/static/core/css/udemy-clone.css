@@ -6,6 +6,7 @@ body {
   font-family: 'Arial', sans-serif; 
   line-height: 1.6; 
   letter-spacing: 0.5px; 
+  background-color: rgb(139, 182, 47);
 }
 
 /* Badge styling with border */

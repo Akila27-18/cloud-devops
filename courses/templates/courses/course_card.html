@@ -1,39 +1,70 @@
+<!-- courses/templates/courses/course_card.html -->
 {% load static %}
-{% load custom_filters %}  <!-- Load your custom filter here -->
+{% load custom_filters %}
 
 <div class="col">
-  <div class="card h-100 shadow-sm">
+  <div class="card h-100 shadow-sm position-relative">
+
     <!-- Course Thumbnail -->
     {% if course.thumbnail_url %}
-      <img src="{{ course.thumbnail_url }}" class="card-img-top" alt="Thumbnail of {{ course.title }}">
+      <img
+        src="{{ course.thumbnail_url }}"
+        class="card-img-top"
+        alt="Thumbnail of {{ course.title }}">
     {% else %}
-      <img src="{% static 'core/img/default-course-thumbnail.jpg' %}" class="card-img-top" alt="Default thumbnail for {{ course.title }}">
+      <img
+        src="{% static 'core/img/default-course-thumbnail.jpg' %}"
+        class="card-img-top"
+        alt="Default thumbnail for {{ course.title }}">
     {% endif %}
-    
+
     <div class="card-body">
+
       <!-- Course Title -->
-      <h6 class="card-title">{{ course.title }}</h6>
+      <h6 class="card-title mb-1">
+        {{ course.title|truncatechars:50 }}
+      </h6>
 
       <!-- Course Category -->
+      {% if course.category %}
       <div class="mt-2">
-        <span class="badge bg-primary text-white">{{ course.category }}</span>
+        <span class="badge bg-primary">
+          {{ course.category }}
+        </span>
       </div>
+      {% endif %}
 
       <!-- Course Rating -->
       <div class="mt-2">
-        <span class="fw-semibold text-warning">
-          {% for i in course.rating|range_filter %}
-            ⭐
-          {% endfor %}
-        </span>
-        <span class="text-muted small">({{ course.rating_count }} reviews)</span>
+        {% if course.rating_count > 0 %}
+          <span class="fw-semibold text-warning">
+            {% for _ in course.rating|range_filter %}
+              ⭐
+            {% endfor %}
+          </span>
+          <span class="text-muted small">
+            ({{ course.rating_count }} reviews)
+          </span>
+        {% else %}
+          <span class="text-muted small">
+            No reviews yet
+          </span>
+        {% endif %}
       </div>
 
       <!-- Course Price -->
-      <div class="mt-2 fw-bold">₹{{ course.price|floatformat:2 }}</div>
+      <div class="mt-2 fw-bold">
+        ₹{{ course.price|floatformat:2 }}
+      </div>
+
+      <!-- CTA -->
+      <a
+        href="{% url 'courses:detail' course.slug %}"
+        class="stretched-link"
+        aria-label="View details of {{ course.title }}">
+      </a>
       
-      <!-- Link to Course Detail -->
-      <a href="{% url 'courses:detail' course.slug %}" class="stretched-link" aria-label="View details of {{ course.title }}"></a>
+
     </div>
   </div>
 </div>

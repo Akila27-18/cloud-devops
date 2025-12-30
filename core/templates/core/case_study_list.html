@@ -1,0 +1,22 @@
+<!-- core/templates/core/case_study_list.html -->
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="container py-5">
+    <h2>Case Studies</h2>
+    <div class="row">
+        {% for study in studies %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ study.title }}</h5>
+                    <p class="card-text">{{ study.summary|truncatewords:20 }}</p>
+                    <a href="{% url 'core:case_study' study.slug %}" class="btn btn-outline-primary btn-sm">Read full story</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-muted">No case studies found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

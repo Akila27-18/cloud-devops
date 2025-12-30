@@ -112,3 +112,24 @@ class LessonCompletion(models.Model):
             if total_lessons > 0:
                 self.enrollment.progress = (completed / total_lessons) * 100
                 self.enrollment.save(update_fields=["progress"])
+
+import uuid
+from django.db import models
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+class Gift(models.Model):
+    course = models.ForeignKey("Course", on_delete=models.CASCADE)
+    sender = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    recipient_email = models.EmailField()
+    message = models.TextField(blank=True)
+    token = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+    redeemed = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def get_redeem_url(self, request):
+        return request.build_absolute_uri(f"/gift/redeem/{self.token}/")
+    
+    def __str__(self):
+        return f"Gift of {self.course.title} to {self.recipient_email}"

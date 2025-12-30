@@ -1,0 +1,10 @@
+<!-- core/templates/core/case_study_detail.html -->
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="container py-5">
+    <h2>{{ study.title }}</h2>
+    <p class="text-muted">{{ study.created_at|date:"F j, Y" }}</p>
+    <div class="mt-4">{{ study.content|linebreaks }}</div>
+    <a href="{% url 'core:case_study_list' %}" class="btn btn-secondary mt-3">Back to all case studies</a>
+</div>
+{% endblock %}

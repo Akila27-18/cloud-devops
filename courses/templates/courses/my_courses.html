@@ -1,56 +1,86 @@
+<!-- courses/templates/courses/my_courses.html -->
 {% extends "core/base.html" %}
 {% load static %}
+
 {% block content %}
 <div class="container py-5">
-  <h2 class="fw-bold">My Courses</h2>
+  <h2 class="fw-bold mb-4">My Courses</h2>
+
   <div class="row">
     {% for enrollment in enrollments %}
       <div class="col-md-4 mb-4">
         <div class="card h-100 shadow-sm">
+
           <!-- Course Thumbnail -->
           {% if enrollment.course.thumbnail_url %}
-            <img src="{{ enrollment.course.thumbnail_url }}" class="card-img-top" alt="{{ enrollment.course.title }}">
+            <img src="{{ enrollment.course.thumbnail_url }}"
+                 class="card-img-top"
+                 alt="{{ enrollment.course.title }}">
           {% else %}
-            <img src="{% static 'core/img/default-course-thumbnail.jpg' %}" class="card-img-top" alt="Default thumbnail for {{ enrollment.course.title }}">
+            <img src="{% static 'core/img/default-course-thumbnail.jpg' %}"
+                 class="card-img-top"
+                 alt="Default thumbnail">
           {% endif %}
-          
-          <div class="card-body">
-            <h5 class="card-title">{{ enrollment.course.title }}</h5>
-            <p class="card-text">{{ enrollment.course.description|truncatewords:20 }}</p>
 
-            <!-- Progress Bar with conditional color -->
-            <div class="progress mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ enrollment.progress|floatformat:0 }}%">
-              <div class="progress-bar 
-                  {% if enrollment.progress >= 75 %} bg-success 
-                  {% elif enrollment.progress >= 50 %} bg-warning 
-                  {% else %} bg-danger {% endif %}" 
-                  role="progressbar"
-                  style="width: {{ enrollment.progress }}%;"
-                  aria-valuenow="{{ enrollment.progress }}" 
-                  aria-valuemin="0" 
-                  aria-valuemax="100">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ enrollment.course.title }}</h5>
+
+            <p class="card-text">
+              {{ enrollment.course.description|truncatewords:20 }}
+            </p>
+
+            <!-- Progress Bar -->
+            <div class="progress mb-3"
+                 data-bs-toggle="tooltip"
+                 title="{{ enrollment.progress|floatformat:0 }}% Complete">
+
+              <div class="progress-bar
+                {% if enrollment.progress >= 75 %}
+                  bg-success
+                {% elif enrollment.progress >= 50 %}
+                  bg-warning
+                {% else %}
+                  bg-danger
+                {% endif %}"
+                role="progressbar"
+                style="width: {{ enrollment.progress }}%;">
                 {{ enrollment.progress|floatformat:0 }}%
               </div>
             </div>
 
-            <!-- Status badge -->
-            {% if enrollment.progress == 100 %}
-              <span class="badge bg-success">Completed</span>
+            <!-- Status -->
+            {% if enrollment.certificate_issued %}
+              <span class="badge bg-success mb-2">
+                🎓 Certificate Earned
+              </span>
+            {% elif enrollment.progress == 100 %}
+              <span class="badge bg-success mb-2">
+                Course Completed
+              </span>
             {% else %}
-              <span class="badge bg-warning">In Progress</span>
+              <span class="badge bg-warning mb-2">
+                In Progress
+              </span>
             {% endif %}
 
-            <!-- Go to course button -->
-            <a href="{% url 'courses:detail' enrollment.course.slug %}" class="btn btn-primary mt-3">
-              Go to Course
+            <!-- Action -->
+            <a href="{% url 'courses:detail' enrollment.course.slug %}"
+               class="btn btn-primary mt-auto">
+              Continue Course
             </a>
           </div>
+
         </div>
       </div>
     {% empty %}
-      <div class="text-center">
-        <p class="lead text-muted">You haven’t enrolled in any courses yet.</p>
-        <a href="{% url 'courses:catalog' %}" class="btn btn-outline-primary btn-lg">Browse Courses</a>
+      <div class="text-center py-5">
+        <p class="lead text-muted">
+          You haven’t enrolled in any courses yet.
+        </p>
+        <a href="{% url 'courses:catalog' %}"
+           class="btn btn-outline-primary btn-lg">
+          Browse Courses
+        </a>
       </div>
     {% endfor %}
   </div>

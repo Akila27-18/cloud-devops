@@ -13,4 +13,8 @@ urlpatterns = [
     path('my-courses/', my_courses, name='my_courses'),   # must come before slug
     path('lesson/complete/<int:lesson_id>/', complete_lesson, name='complete_lesson'),
     path('<slug:slug>/', detail, name='detail'),
+    path('buy/<slug:slug>/', views.buy_course, name='buy_course'),
+    path('gift/redeem/<uuid:token>/', views.redeem_gift, name='redeem_gift'),
+
+
 ]

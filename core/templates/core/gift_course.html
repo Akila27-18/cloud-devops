@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <h2 class="fw-bold mb-4">Send a Course as a Gift</h2>
+
+    <!-- Success / error messages -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+
+        <div class="card shadow-sm p-4">
+          <h5 class="card-title mb-3">Course: {{ course.title }}</h5>
+          <p class="text-muted">{{ course.description|truncatewords:25 }}</p>
+
+          <form method="post">
+            {% csrf_token %}
+
+            <!-- Sender Name (optional for anonymous users) -->
+            {% if not request.user.is_authenticated %}
+            <div class="mb-3">
+              <label for="sender_name" class="form-label">Your Name</label>
+              <input type="text" class="form-control" id="sender_name" name="sender_name" placeholder="A friend" required>
+            </div>
+            {% endif %}
+
+            <!-- Recipient Email -->
+            <div class="mb-3">
+              <label for="recipient_email" class="form-label">Recipient's Email</label>
+              <input type="email" class="form-control" id="recipient_email" name="recipient_email" required>
+            </div>
+
+            <!-- Optional Message -->
+            <div class="mb-3">
+              <label for="message" class="form-label">Message (optional)</label>
+              <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+            </div>
+
+            <!-- Price -->
+            <div class="mb-3">
+              <p class="fw-bold">Price: ₹{{ course.price }}</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Send Gift</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

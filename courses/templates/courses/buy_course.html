@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <!-- Course Info -->
+        <div class="card p-4 mb-4 shadow-sm">
+          <h2 class="fw-bold">{{ course.title }}</h2>
+          <div class="text-muted mb-3">{{ course.category }}</div>
+          <p>{{ course.description }}</p>
+          <div class="fw-bold fs-4 mt-3">Price: ₹{{ course.price }}</div>
+        </div>
+
+        <!-- Buy Now Button -->
+        <div class="d-flex justify-content-center mt-4">
+          <a href="{% url 'checkout:mock_checkout' %}" class="btn btn-warning btn-lg w-50">
+            Buy Now
+          </a>
+        </div>
+
+        <!-- Back Link -->
+        <div class="mt-4 text-center">
+          <a href="{% url 'courses:detail' course.slug %}" class="btn btn-outline-secondary">
+            Back to Course Details
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

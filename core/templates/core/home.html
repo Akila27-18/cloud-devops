@@ -8,7 +8,15 @@
   <div class="container text-center">
     <p class="mb-1 fw-semibold text-dark">Need a last-minute gift?</p>
     <p class="text-muted mb-2">Send a course via email. It’s fast, easy & a lasting gift to show you care.</p>
-    <a class="btn btn-amber btn-lg shadow-sm" href="#">Treat them now</a>
+    {% if banner_course %}
+      <a class="btn btn-amber btn-lg shadow-sm" href="{% url 'core:gift_course' banner_course.slug %}">
+        Treat them now
+      </a>
+    {% else %}
+      <a class="btn btn-amber btn-lg shadow-sm disabled">
+        No course available
+      </a>
+    {% endif %}
   </div>
 </section>
 
@@ -39,7 +47,7 @@
       <div class="col-lg-8">
         <h3 class="fw-bold">Reimagine your career in the AI era</h3>
         <p>Future-proof your skills with the Personal Plan. Get access to top-rated courses in tech, business, and more.</p>
-        <a class="btn btn-outline-light btn-lg me-3 shadow-sm" href="#">Learn more</a>
+        <a class="btn btn-outline-light btn-lg me-3 shadow-sm" href="{% url 'courses:catalog' %}?path=ai_fluency" class="btn btn-amber btn-lg">Learn more</a>
         <span class="opacity-75">Starting at ₹850/month</span>
       </div>
       <div class="col-lg-4 text-center">
@@ -147,7 +155,7 @@
               <li>Analytics & insights</li>
               <li>Mobile access</li>
             </ul>
-            <a href="#" class="btn btn-primary btn-lg">Get started</a>
+            <a href="{% url 'core:teach' %}?path=team" class="btn btn-primary btn-lg">Get started</a>
           </div>
         </div>
       </div>
@@ -161,7 +169,7 @@
               <li>Custom content</li>
               <li>Dedicated CSM</li>
             </ul>
-            <a href="#" class="btn btn-dark btn-lg">Contact sales</a>
+            <a href="{% url 'core:business' %}?path=enterprise" class="btn btn-dark btn-lg">Contact sales</a>
           </div>
         </div>
       </div>
@@ -175,7 +183,7 @@
               <li>Enterprise collection</li>
               <li>Growth collection</li>
             </ul>
-            <a href="#" class="btn btn-amber btn-lg">Learn more</a>
+            <a href="{% url 'courses:catalog' %}?path=ai_fluency" class="btn btn-amber btn-lg">Learn more</a>
           </div>
         </div>
       </div>
